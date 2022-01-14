@@ -47,7 +47,52 @@ var confirmSpChar = function() {
     console.log("user denied Special Characters");
     return false;
   }
-}
+};
+
+// function to confirm that the user needs special characters in the PW
+var confirmNumericChar = function() {
+  var NumChar = window.confirm("Click OK to confirm including numeric characters");
+  console.log("User presented with numeric character confirm");
+
+  if (NumChar) {
+    console.log("User confirmed numeric characters");
+    return true;
+  }
+  else {
+    console.log("user denied numeric characters");
+    return false;
+  }
+};
+
+// function to confirm that the user needs lowercase characters in the PW
+var lowerCaseChar = function() {
+  var lCaseChar = window.confirm("Click OK to confirm including lowercase characters");
+  console.log("User presented with lowercase character confirm");
+
+  if (lCaseChar) {
+    console.log("User confirmed lowercase characters");
+    return true;
+  }
+  else {
+    console.log("user denied lowercase characters");
+    return false;
+  }
+};
+
+// function to confirm that the user needs upper characters in the PW
+var upperCaseChar = function() {
+  var upCaseChar = window.confirm("Click OK to confirm including uppercase characters");
+  console.log("User presented with uppercase character confirm");
+
+  if (upCaseChar) {
+    console.log("User confirmed uppercase characters");
+    return true;
+  }
+  else {
+    console.log("user denied uppercase characters");
+    return false;
+  }
+};
 
 // eventListener is capturing the click and launching getLength function
 generateBtn.addEventListener("click", getLength);
