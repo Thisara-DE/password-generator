@@ -7,8 +7,7 @@ var getLength = function() {
   var pwLength = window.prompt("How many characters would you like your password to contain");  
   var pwLengthMax = 128;
   var pwLengthMin = 8;
-  // pwLength = parseInt(pwLength);   
-
+  
   if (pwLength < pwLengthMin || pwLength > pwLengthMax) {
     window.alert("Password length must be between 8-128 Characters");
     return getLength();    
@@ -24,7 +23,7 @@ var getLength = function() {
   else
   {   
     // calling the next function to confirm if the user needs special characters
-    confirmSpChar();      
+    pwLength = parseInt(pwLength);           
     return pwLength;
   }  
 };
@@ -54,7 +53,7 @@ var confirmNumericChar = function() {
 };
 
 // function to confirm that the user needs lowercase characters in the PW
-var lowerCaseChar = function() {
+var confirmLowerCaseChar = function() {
   var lCaseChar = window.confirm("Click OK to confirm including lowercase characters");  
 
   if (lCaseChar) {    
@@ -66,7 +65,7 @@ var lowerCaseChar = function() {
 };
 
 // function to confirm that the user needs upper characters in the PW
-var upperCaseChar = function() {
+var confirmUpperCaseChar = function() {
   var upCaseChar = window.confirm("Click OK to confirm including uppercase characters");  
 
   if (upCaseChar) {    
@@ -86,39 +85,44 @@ var randomObj = {
 
 var getRandomSpChar = function(confirmSpChar) {
     if(confirmSpChar) {
-    var specialChar = '!#$%&^()*,[]{}./';
-    return specialChar[Math.floor(Math.random() * specialChar.length)];
+      var specialChar = '!#$%&^()*,[]{}./';
+      return specialChar[Math.floor(Math.random() * specialChar.length)];
     }
     else {
       return null;
     }
 }
 
-var getRandomNumber = function() {
-
-  return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+var getRandomNumber = function(confirmNumericChar) {
+    if(confirmNumericChar) {
+      return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+  }
 }
 
-var getRandomLowerCase = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+var getRandomLowerCase = function(confirmLowerCaseChar) {
+    if(confirmLowerCaseChar) {
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  }
 }
 
-var getRandomUpperCase = function() {
-  return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+var getRandomUpperCase = function(confirmUpperCaseChar) {
+    if(confirmUpperCaseChar) {
+      return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  }
 }
 
 
 // eventListener is capturing the click and launching getLength function
 generateBtn.addEventListener("click", getLength);
 
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
+  passwordText.value = password;
 
-// }
+}
 
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
