@@ -1,10 +1,9 @@
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
 
-
 // Assignment code here
-function generatePassword() {
-    // function to get length of the PW 8-128 characters and return the validated number as an integer
+//var getPwCriteria = function() {    
+  // function to get length of the PW 8-128 characters and return the validated number as an integer
   var getLength = function() {
     var pwLength = window.prompt("How many characters would you like your password to contain");  
     var pwLengthMax = 128;
@@ -25,11 +24,12 @@ function generatePassword() {
     else
     {   
       // calling the next function to confirm if the user needs special characters
-      pwLength = parseInt(pwLength);           
+      pwLength = parseInt(pwLength);                
       return pwLength;
     }  
   };
-
+   
+  
   // function to confirm that the user needs special characters in the PW
   var confirmSpChar = function() {
     var SpChar = window.confirm("Click OK to confirm including special characters");  
@@ -41,6 +41,7 @@ function generatePassword() {
       return false;
     }
   };
+  
 
   // function to confirm that the user needs special characters in the PW
   var confirmNumericChar = function() {
@@ -53,6 +54,7 @@ function generatePassword() {
       return false;
     }
   };
+  
 
   // function to confirm that the user needs lowercase characters in the PW
   var confirmLowerCaseChar = function() {
@@ -65,6 +67,7 @@ function generatePassword() {
       return false;
     }
   };
+  
 
   // function to confirm that the user needs upper characters in the PW
   var confirmUpperCaseChar = function() {
@@ -76,8 +79,10 @@ function generatePassword() {
     else {    
       return false;
     }
-  };
-}
+  };  
+  
+//};
+
 
   var randomObj = {
     special: getRandomSpChar,
@@ -100,11 +105,11 @@ function generatePassword() {
   var getRandomNumber = function(confirmNumericChar) {
       if(confirmNumericChar) {
         return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-    }
-    else 
-    {
+      }
+      else 
+      {
         return null;
-    }
+      }
   }
 
   var getRandomLowerCase = function(confirmLowerCaseChar) {
@@ -119,21 +124,30 @@ function generatePassword() {
     }
   }
 
+  // eventListener is capturing the click and launching pw criteria function
+generateBtn.addEventListener("click", generatePassword);
 
-generatePassword();
+var generatePassword = function() {
+  var length = getLength();
+  var hasSpCharacters = confirmSpChar();
+  var hasNumbers = confirmNumericChar();
+  var hasUpper = confirmUpperCaseChar();
+  var hasLower = confirmLowerCaseChar(); 
+ 
+}
 
 
-// // eventListener is capturing the click and launching getLength function
-// generateBtn.addEventListener("click", generatePassword());
 
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-//   passwordText.value = password;
+  passwordText.value = password;
 
-// }
+}
 
-// // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
